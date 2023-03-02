@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import createSagaMiddleware from "redux-saga";
 
@@ -25,3 +24,5 @@ const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 
 export { store, persistor };
+
+export type RootState = ReturnType<typeof store.getState>;
