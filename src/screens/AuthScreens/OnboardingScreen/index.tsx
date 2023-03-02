@@ -1,11 +1,18 @@
-import React from "react";
-import { Container, Title } from "../../../styles";
+import Onboarding from "react-native-onboarding-swiper";
+import { onboardingPages } from "../../../constants/onboarding";
+import { useNavigation } from "@react-navigation/native";
 
 const OnboardingScreen = () => {
+  const navigation = useNavigation();
+
   return (
-    <Container flex={1} align="center" justify="center">
-      <Title color="#000">OnboardingScreen</Title>
-    </Container>
+    <Onboarding
+      pages={onboardingPages}
+      nextLabel="Próximo"
+      skipLabel="Pular"
+      onSkip={() => navigation.navigate("SignInScreen")}
+      onDone={() => navigation.navigate("SignInScreen")}
+    />
   );
 };
 
