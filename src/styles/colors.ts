@@ -1,8 +1,9 @@
 const colors = {
-  primary: "#4054B2",
-  primaryLight: "#3EAEFF",
-  secondary: "#039F74",
-  tertiary: "#FFA23A",
+  primary: "#fb8500",
+  primaryLight: "#ffb703",
+  secondary: "#023047",
+  secondaryLight: "#219ebc",
+  tertiary: "#3EAEFF",  
   danger: "#FE5050",
   muted: "#8D8F90",
   heavyMuted: "#5B5B5B",
