@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import { colors } from "../styles/colors";
+import theme from "./theme";
 import { MaterialCommunityIcons, Feather, Octicons } from "@expo/vector-icons";
-import { Modalize } from 'react-native-modalize';
+import { Modalize } from "react-native-modalize";
 import {
   ButtonProps,
   ContainerProps,
@@ -11,6 +11,7 @@ import {
   ModalProps,
   ScrollViewProps,
   SpacerProps,
+  TextInputProps,
   TextProps,
   TouchableProps,
 } from "../types/TStyles";
@@ -30,6 +31,8 @@ import {
   RadioButton as RadioButtonPaper,
   DefaultTheme,
 } from "react-native-paper";
+
+const { colors, fonts } = theme;
 
 export const Container = styled.View<ContainerProps>`
   flex: ${(props) => (props.flex ? props.flex : "none")};
@@ -58,9 +61,15 @@ export const Container = styled.View<ContainerProps>`
     props.radius ? "8px" : props.customRadius ? props.customRadius : "0"};
   border-width: ${(props) => `${props.border || 0}px`};
   border-color: ${(props) =>
-    `${props.theme[props?.borderColor] || props?.borderColor || "#000"}`};
+    `${
+      props.theme.colors[props?.borderColor] || props?.borderColor || "#000"
+    }`};
   background: ${(props) =>
-    `${props.theme[props?.background] || props?.background || "transparent"}`};
+    `${
+      props.theme.colors[props?.background] ||
+      props?.background ||
+      "transparent"
+    }`};
   opacity: ${(props) => props.opacity || 1};
 `;
 
@@ -72,9 +81,9 @@ export const Title = styled.Text<TextProps>`
       ? "32px"
       : props.size
       ? props.size
-      : "28px"};
+      : "26px"};
   color: ${(props) =>
-    `${props.theme[props?.color] || props.color || colors.dark}`};
+    `${props.theme.colors[props?.color] || props.color || colors.dark}`};
   text-align: ${(props) => props.align || "left"};
   margin: ${(props) => props.spacing || 0};
   margin-right: ${(props) => props.right || 0}px;
@@ -90,12 +99,8 @@ export const Title = styled.Text<TextProps>`
   opacity: ${(props) => props.opacity || 1};
   text-decoration: ${(props) => props.decoration || "none"};
   text-transform: ${(props) => (props.upper ? "uppercase" : "none")};
-  /* font-family: ${(props) =>
-    props.bold
-      ? "Roboto_700Bold"
-      : props.extraBold
-      ? "Roboto_900Black"
-      : "Roboto_400Regular"}; */
+  font-family: ${(props) =>
+    `${props.theme.fonts[props?.family] || fonts.semiBold}`};
 `;
 
 export const Touchable = styled.TouchableOpacity<TouchableProps>`
@@ -127,7 +132,11 @@ export const Touchable = styled.TouchableOpacity<TouchableProps>`
   border: ${(props) => props.border || "none"};
   opacity: ${(props) => props.opacity || 1};
   background: ${(props) =>
-    `${props.theme[props?.background] || props?.background || "transparent"}`};
+    `${
+      props.theme.colors[props?.background] ||
+      props?.background ||
+      "transparent"
+    }`};
 `;
 
 export const ContainerKeyboardAvoiding = styled.KeyboardAvoidingView<ContainerProps>`
@@ -153,9 +162,15 @@ export const ContainerKeyboardAvoiding = styled.KeyboardAvoidingView<ContainerPr
     props.radius ? "8px" : props.customRadius ? props.customRadius : "0"};
   border-width: ${(props) => `${props.border || 0}px`};
   border-color: ${(props) =>
-    `${props.theme[props?.borderColor] || props?.borderColor || "#000"}`};
+    `${
+      props.theme.colors[props?.borderColor] || props?.borderColor || "#000"
+    }`};
   background: ${(props) =>
-    `${props.theme[props?.background] || props?.background || "transparent"}`};
+    `${
+      props.theme.colors[props?.background] ||
+      props?.background ||
+      "transparent"
+    }`};
 `;
 
 export const ScrollView = styled.ScrollView.attrs<ScrollViewProps>((props) => ({
@@ -175,7 +190,37 @@ export const ScrollView = styled.ScrollView.attrs<ScrollViewProps>((props) => ({
       ? props.customPadding
       : "0"};
   background: ${(props) =>
-    `${props.theme[props?.background] || props?.background || "transparent"}`};
+    `${
+      props.theme.colors[props?.background] ||
+      props?.background ||
+      "transparent"
+    }`};
+`;
+
+export const TextInput = styled(TextInputPaper).attrs<TextInputProps>(
+  (props) => ({
+    mode: props.mode || "outlined",
+    outlineColor: props.theme.colors[props.textColor || "primary"],
+    underlineColor: "transparent",
+    selectionColor: props.theme.colors[props.textColor || "primary"],
+    activeUnderlineColor: "transparent",
+    theme: {
+      colors: {
+        text: props.disabled ? colors.muted : colors.dark,
+        primary: props.theme.dark,
+        background:
+          props.background || props.theme.colors[props.textColor || "light"],
+        placeholder: colors.muted,
+        error: colors.danger,
+      },
+    },
+  })
+)<TextInputProps>`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  font-size: 24px;
+  /* font-weight:bold; */
+  font-family: ${(props) =>
+    `${props.theme.fonts[props?.family] || fonts.regular}`};
 `;
 
 export const Text = styled.Text<TextProps>`
@@ -188,7 +233,7 @@ export const Text = styled.Text<TextProps>`
       ? props.size
       : "14px"};
   color: ${(props) =>
-    `${props.theme[props?.color] || props.color || colors.dark}`};
+    `${props.theme.colors[props?.color] || props.color || colors.dark}`};
   margin: ${(props) => props.spacing || 0};
   margin-right: ${(props) => props.right || 0}px;
   margin-left: ${(props) => props.left || 0}px;
@@ -204,12 +249,8 @@ export const Text = styled.Text<TextProps>`
   text-align: ${(props) => props.align || "left"};
   text-decoration: ${(props) => props.decoration || "none"};
   text-transform: ${(props) => (props.upper ? "uppercase" : "none")};
-  /* font-family: ${(props) =>
-    props.bold
-      ? "Roboto_700Bold"
-      : props.extraBold
-      ? "Roboto_900Black"
-      : "Roboto_400Regular"}; */
+  font-family: ${(props) =>
+    `${props.theme.fonts[props?.family] || fonts.regular}`};
 `;
 
 export const Button = styled(ButtonPaper).attrs<ButtonProps>((props) => ({
@@ -226,14 +267,15 @@ export const Button = styled(ButtonPaper).attrs<ButtonProps>((props) => ({
   marginLeft: props.left || 0,
   marginRight: props.right || 0,
   labelStyle: {
-    color: props.theme[props.textColor || "light"],
+    color: props.theme.colors[props.textColor || "light"],
     letterSpacing: 0,
     fontSize: props.fontSize || 18,
+    fontFamily: props.theme.fonts[props.family] || fonts.regular,
   },
   contentStyle: {
     height: props.height ? props.height : 52,
     backgroundColor:
-      props.theme[props.background] || props.background || "transparent",
+      props.theme.colors[props.background] || props.background || "transparent",
   },
   uppercase: false,
   mode: props.mode || "contained",
@@ -247,38 +289,47 @@ export const Image = styled.Image.attrs<ImageProps>((props) => ({
   border-radius: ${(props) => props.radius || 0};
   border-width: ${(props) => props.border || 0};
   border-color: ${(props) =>
-    `${props.theme[props?.borderColor] || props?.borderColor || "#000"}`};
+    `${
+      props.theme.colors[props?.borderColor] || props?.borderColor || "#000"
+    }`};
   margin: ${(props) => props.spacing || 0};
 `;
 
-export const Modal = styled(Modalize).attrs<ModalProps>(props => ({
+export const Modal = styled(Modalize).attrs<ModalProps>((props) => ({
   handleStyle: {
     backgroundColor: props.handleColor || colors.muted,
   },
   modalStyle: {
     backgroundColor: props.background || colors.light,
-  }
-})) <ModalProps>``;
+  },
+}))<ModalProps>``;
 
 export const Spacer = styled.View<SpacerProps>`
- width: ${props => props.width || '100%'};
- height: ${props => props.size ? props.size + 'px' : props.vertical ? '100%' : '10px'};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) =>
+    props.size ? props.size + "px" : props.vertical ? "100%" : "10px"};
 `;
 
 export const DividerH = styled.View<DividerProps>`
-  width: ${props => props.width || '100%'};
-  height: ${props => props.size ? props.size + 'px' : '1px'};
-  background: ${props => `${props.theme[props?.background] || props?.background || '#dbdbdb'}`};
-  margin: ${props => props.spacing || 0};
-  opacity: ${props => props.opacity || 1};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => (props.size ? props.size + "px" : "1px")};
+  background: ${(props) =>
+    `${
+      props.theme.colors[props?.background] || props?.background || "#dbdbdb"
+    }`};
+  margin: ${(props) => props.spacing || 0};
+  opacity: ${(props) => props.opacity || 1};
 `;
 
 export const DividerV = styled.View<DividerProps>`
-  height: ${props => props.height || '100%'};
-  width: ${props => props.size ? props.size + 'px' : '1px'};
-  background: ${props => `${props.theme[props?.background] || props?.background || '#dbdbdb'}`};
-  margin: ${props => props.spacing || 0};
-  opacity: ${props => props.opacity || 1};
+  height: ${(props) => props.height || "100%"};
+  width: ${(props) => (props.size ? props.size + "px" : "1px")};
+  background: ${(props) =>
+    `${
+      props.theme.colors[props?.background] || props?.background || "#dbdbdb"
+    }`};
+  margin: ${(props) => props.spacing || 0};
+  opacity: ${(props) => props.opacity || 1};
 `;
 
 export const MaterialIcon = styled(MaterialCommunityIcons).attrs<IconProps>(

@@ -1,6 +1,5 @@
 //@ts-ignore
 import default_profile from "../assets/images/logo-example.png";
-import { colors } from "../styles/colors";
 import { format, parseISO, isDate } from "date-fns";
 import * as yup from "yup";
 import pt from "date-fns/locale/pt";
@@ -30,29 +29,6 @@ const checkUrl = (url: string) => {
     return { uri: url };
   } else {
     return default_profile;
-  }
-};
-
-const checkColorIndicator = (
-  percent: number,
-  positiveColor?: string,
-  negativeColor?: string,
-  positiveBgColor?: string,
-  nevativeBgColor?: string
-) => {
-  percent = Number(percent);
-  if (percent < 0) {
-    return {
-      value: `${percent?.toFixed(2)}%`,
-      color: positiveColor || colors.danger,
-      bg: nevativeBgColor || "rgba(255, 0, 0, 0.1)",
-    };
-  } else {
-    return {
-      value: `${percent?.toFixed(2)}%`,
-      color: negativeColor || colors.secondary,
-      bg: positiveBgColor || "rgba(3, 159, 116, 0.1)",
-    };
   }
 };
 
@@ -182,5 +158,4 @@ export {
   formatDate,
   formatNumber,
   populateMap,
-  checkColorIndicator,
 };

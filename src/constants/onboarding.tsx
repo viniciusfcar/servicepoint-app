@@ -1,5 +1,8 @@
 import { Image } from "react-native";
-import { colors } from "../styles/colors";
+import { useTheme } from "styled-components";
+import theme from "../styles/theme";
+
+const { colors } = theme;
 
 const onboardingPages = [
   {

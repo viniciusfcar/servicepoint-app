@@ -88,19 +88,29 @@ export type TouchableProps = {
 };
 
 export type ButtonProps = {
-  background?: string,
-  block?: boolean,
-  half?: boolean,
-  textColor?: string,
-  mode?: string,
-  right?: string | number,
-  left?: string | number,
-  top?: string | number,
-  bottom?: string | number,
-  height?: string | number,
-  fontSize?: number,
-  width?: string
-}
+  background?: string;
+  block?: boolean;
+  half?: boolean;
+  textColor?: string;
+  mode?: string;
+  right?: string | number;
+  left?: string | number;
+  top?: string | number;
+  bottom?: string | number;
+  height?: string | number;
+  fontSize?: number;
+  width?: string;
+  family?:
+    | "thin"
+    | "extraLight"
+    | "light"
+    | "regular"
+    | "medium"
+    | "semiBold"
+    | "bold"
+    | "extraBold"
+    | "black";
+};
 
 export type TextProps = {
   color?: string;
@@ -120,9 +130,18 @@ export type TextProps = {
   left?: string | number;
   top?: string | number;
   bottom?: string | number;
-  family?: string;
   upper?: boolean;
   line?: number;
+  family?:
+    | "thin"
+    | "extraLight"
+    | "light"
+    | "regular"
+    | "medium"
+    | "semiBold"
+    | "bold"
+    | "extraBold"
+    | "black";
 };
 
 export type ScrollViewProps = {
@@ -150,6 +169,22 @@ export type ImageProps = {
   borderColor?: string;
 };
 
+export type TextInputProps = {
+  error: boolean | string;
+  width?: string;
+  background?: string;
+  family?:
+    | "thin"
+    | "extraLight"
+    | "light"
+    | "regular"
+    | "medium"
+    | "semiBold"
+    | "bold"
+    | "extraBold"
+    | "black";
+};
+
 export type IconProps = {
   name: string;
   size?: number;
@@ -157,23 +192,22 @@ export type IconProps = {
 };
 
 export type ModalProps = {
-  adjust?: boolean,
-  background?: string,
-  handleColor?: string
-}
+  adjust?: boolean;
+  background?: string;
+  handleColor?: string;
+};
 
 export type SpacerProps = {
-  size?: number,
-  vertical?: boolean,
-  width?: string
-
-}
+  size?: number;
+  vertical?: boolean;
+  width?: string;
+};
 
 export type DividerProps = {
-  size?: number,
-  background?: string,
-  spacing?: string | number,
-  width?: string,
-  height?: string,
-  opacity?: number
-}
+  size?: number;
+  background?: string;
+  spacing?: string | number;
+  width?: string;
+  height?: string;
+  opacity?: number;
+};
