@@ -6,6 +6,7 @@ import {
   ButtonProps,
   ContainerProps,
   DividerProps,
+  HelperTextProps,
   IconProps,
   ImageProps,
   ModalProps,
@@ -200,28 +201,35 @@ export const ScrollView = styled.ScrollView.attrs<ScrollViewProps>((props) => ({
 export const TextInput = styled(TextInputPaper).attrs<TextInputProps>(
   (props) => ({
     mode: props.mode || "outlined",
-    outlineColor: props.theme.colors[props.textColor || "primary"],
-    underlineColor: "transparent",
-    selectionColor: props.theme.colors[props.textColor || "primary"],
+    outlineColor: props.theme.colors[props?.textColor || "primary"],
+    underlineColor: props.theme.colors[props?.textColor || "primary"],
+    selectionColor: props.theme.colors[props?.textColor || "primary"],
     activeUnderlineColor: "transparent",
+    contentStyle: {
+      backgroundColor: props.theme.colors[props.background || "light"],
+    },
     theme: {
       colors: {
         text: props.disabled ? colors.muted : colors.dark,
         primary: props.theme.dark,
-        background:
-          props.background || props.theme.colors[props.textColor || "light"],
         placeholder: colors.muted,
         error: colors.danger,
+      },
+      fonts: {
+        fontFamily: props.theme.fonts[props.family || fonts.regular],
       },
     },
   })
 )<TextInputProps>`
   width: ${(props) => (props.width ? props.width : "100%")};
-  font-size: 24px;
-  /* font-weight:bold; */
-  font-family: ${(props) =>
-    `${props.theme.fonts[props?.family] || fonts.regular}`};
+  font-size: ${props => props.size || `${18}px` };
 `;
+
+export const HelperText = styled(HelperTextPaper).attrs<HelperTextProps>(
+  (props) => ({
+    type: "error",
+  })
+)<HelperTextProps>``;
 
 export const Text = styled.Text<TextProps>`
   font-size: ${(props) =>
@@ -307,7 +315,7 @@ export const Modal = styled(Modalize).attrs<ModalProps>((props) => ({
 export const Spacer = styled.View<SpacerProps>`
   width: ${(props) => props.width || "100%"};
   height: ${(props) =>
-    props.size ? props.size + "px" : props.vertical ? "100%" : "10px"};
+    props.size ? `${props.size}px`: props.vertical ? "100%" : "10px"};
 `;
 
 export const DividerH = styled.View<DividerProps>`

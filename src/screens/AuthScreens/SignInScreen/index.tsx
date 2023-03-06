@@ -56,7 +56,7 @@ const SignInScreen = () => {
             buttonColor={colors.primary}
             family="medium"
           >
-            Entre
+            Realizar login
           </Button>
 
           <Button

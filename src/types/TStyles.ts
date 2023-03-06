@@ -169,21 +169,12 @@ export type ImageProps = {
   borderColor?: string;
 };
 
-export type TextInputProps = {
+export interface TextInputProps extends IFonts {
   error: boolean | string;
   width?: string;
   background?: string;
-  family?:
-    | "thin"
-    | "extraLight"
-    | "light"
-    | "regular"
-    | "medium"
-    | "semiBold"
-    | "bold"
-    | "extraBold"
-    | "black";
-};
+  size?: string
+}
 
 export type IconProps = {
   name: string;
@@ -211,3 +202,21 @@ export type DividerProps = {
   height?: string;
   opacity?: number;
 };
+
+export type HelperTextProps = {
+  type?: string,
+  color?: string
+}
+
+interface IFonts {
+  family?:
+    | "thin"
+    | "extraLight"
+    | "light"
+    | "regular"
+    | "medium"
+    | "semiBold"
+    | "bold"
+    | "extraBold"
+    | "black";
+}
