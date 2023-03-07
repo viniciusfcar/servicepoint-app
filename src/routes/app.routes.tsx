@@ -3,8 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-import HomeProviderScreen from "../screens/UserScreens/ProviderScreens/HomeProviderScreen";
-import HomeManagerScreen from "../screens/UserScreens/ManagerScreens/HomeManagerScreen";
+import HomeProviderScreen from "../screens/RoleScreens/ProviderScreens/HomeProviderScreen";
+import HomeManagerScreen from "../screens/RoleScreens/ManagerScreens/HomeManagerScreen";
 
 const AppRoutes = () => {
   return (

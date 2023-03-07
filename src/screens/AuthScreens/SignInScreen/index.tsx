@@ -5,6 +5,7 @@ import {
   Container,
   ScrollView,
   Title,
+  Text,
   Image,
   Touchable,
   MaterialIcon,
@@ -70,6 +71,10 @@ const SignInScreen = () => {
             Crie sua conta
           </Button>
         </Container>
+
+        <Touchable align="center">
+          <Text color="primary">Esqueceu sua senha?</Text>
+        </Touchable>
       </ScrollView>
       <ContactModal modalRef={contactModalRef} />
       <SignInModal modalRef={signInModalRef} />
