@@ -9,7 +9,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      {signed ? <AppRoutes /> : <AuthRoutes onboard={onboard} />}
+      {true ? <AppRoutes /> : <AuthRoutes onboard={onboard} />}
     </NavigationContainer>
   );
 };

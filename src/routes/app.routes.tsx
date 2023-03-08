@@ -1,14 +1,15 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-const Stack = createStackNavigator();
-
+import MainTab from "./tab.routes";
 import HomeProviderScreen from "../screens/RoleScreens/ProviderScreens/HomeProviderScreen";
-import HomeManagerScreen from "../screens/RoleScreens/ManagerScreens/HomeManagerScreen";
+
+const Stack = createStackNavigator();
 
 const AppRoutes = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+       <Stack.Screen name="MainTab" component={MainTab} />
       <Stack.Screen name="HomeProviderScreen" component={HomeProviderScreen} />
     </Stack.Navigator>
   );
