@@ -11,6 +11,9 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setReducer: (state, action: PayloadAction<any>) => {
+      state[action.payload.key] = action.payload.data
+    },
     signInRequest: (state) => {
       state.loading = true;
     },
@@ -28,6 +31,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { signInRequest, signInSuccess, signInFailure, setOnboarding } =
+export const { signInRequest, signInSuccess, signInFailure, setOnboarding, setReducer } =
   authSlice.actions;
 export const authReducer = authSlice.reducer;

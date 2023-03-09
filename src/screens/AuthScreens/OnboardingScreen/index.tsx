@@ -9,7 +9,7 @@ const OnboardingScreen = () => {
   const navigation = useNavigation();
 
   const handleFinishOnboarding = () => {
-    dispatch(setOnboarding());
+    dispatch(signInRequest());
     navigation.navigate("SignInScreen");
   };
 

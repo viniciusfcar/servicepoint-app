@@ -5,12 +5,13 @@ import {
   signInSuccess,
   signInFailure,
   setOnboarding,
+  setReducer,
 } from "./auth-slice";
 import api from "../../../services/api";
 
-export function* _signInRequest({ payload }) {
+export function* _signInRequest() {
   try {
-    yield put(setOnboarding());
+    yield put(setReducer({ key: "onboard", data: true }));
   } catch (error) {
     console.log("Error em _signInRequest: ", error);
   }

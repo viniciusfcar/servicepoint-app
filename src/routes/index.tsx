@@ -6,7 +6,6 @@ import AppRoutes from "./app.routes";
 
 const Routes = () => {
   const { signed, onboard } = useAppSelector((state) => state?.authReducer);
-  console.log('ONBOARDING: ', onboard)
 
   return (
     <NavigationContainer ref={navigationRef}>
